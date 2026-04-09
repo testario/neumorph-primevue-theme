@@ -1,0 +1,541 @@
+/* ─── Custom Properties ────────────────────────────────────────────────── */
+:root {
+  --neu-bg: #e4e4e4;
+  --neu-input-bg: #e0e0e0;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  /* Shadows */
+  --neu-shadow:
+    0 5px 12px -4px rgba(0, 0, 0, 0.5),
+    inset 0 -3px 4px -1px rgba(0, 0, 0, 0.2),
+    0 -10px 15px -1px rgba(255, 255, 255, 0.6),
+    inset 0 3px 4px -1px rgba(255, 255, 255, 0.2),
+    inset 0 0 5px 1px rgba(255, 255, 255, 0.8),
+    inset 0 20px 30px 0 rgba(255, 255, 255, 0.2);
+
+  --neu-shadow-active:
+    0 12px 25px -4px rgba(0, 0, 0, 0.4),
+    inset 0 -8px 30px 1px rgba(255, 255, 255, 0.9),
+    0 -10px 15px -1px rgba(255, 255, 255, 0.6),
+    inset 0 8px 25px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 10px 1px rgba(255, 255, 255, 0.6);
+
+  --neu-shadow-checked:
+    0 10px 25px -4px rgba(0, 0, 0, 0.4),
+    inset 0 -8px 25px -1px rgba(255, 255, 255, 0.9),
+    0 -10px 15px -1px rgba(255, 255, 255, 0.6),
+    inset 0 8px 20px 0 rgba(0, 0, 0, 0.2),
+    inset 0 0 5px 1px rgba(255, 255, 255, 0.6);
+
+  --neu-shadow-inset:
+    inset 3px 3px 8px rgba(0, 0, 0, 0.18),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.75),
+    0 -2px 6px rgba(255, 255, 255, 0.5);
+}
+
+/* ─── Reset / Base ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--neu-bg);
+  color: #3d3d3d;
+  min-height: 100vh;
+}
+
+/* ─── Buttons ──────────────────────────────────────────────────────────── */
+.p-button {
+  box-shadow: var(--neu-shadow) !important;
+  border: none !important;
+  transition: box-shadow 0.2s ease, transform 0.1s ease !important;
+}
+.p-button:hover:not(:disabled) {
+  box-shadow: var(--neu-shadow) !important;
+  filter: brightness(1.04);
+}
+.p-button:active:not(:disabled),
+.p-button.p-button-active {
+  box-shadow: var(--neu-shadow-active) !important;
+  transform: translateY(1px);
+}
+
+/* Outlined button — keep border but add shadow */
+.p-button-outlined {
+  border: 2px solid currentColor !important;
+  background: transparent !important;
+  box-shadow: var(--neu-shadow) !important;
+}
+
+/* Text / ghost button */
+.p-button-text {
+  box-shadow: none !important;
+  background: transparent !important;
+}
+.p-button-text:hover {
+  background: rgba(0,0,0,0.04) !important;
+}
+
+/* Severity colour overrides */
+.p-button-secondary {
+  background: #B8A9E8 !important;
+  color: #ffffff !important;
+}
+.p-button-danger {
+  background: #F5A0A0 !important;
+  color: #ffffff !important;
+}
+.p-button-warn {
+  background: #f5c87a !important;
+  color: #ffffff !important;
+}
+.p-button-info {
+  background: #8dc6e8 !important;
+  color: #ffffff !important;
+}
+.p-button-help {
+  background: #B8A9E8 !important;
+  color: #ffffff !important;
+}
+.p-button-contrast {
+  background: #3d3d3d !important;
+  color: #e4e4e4 !important;
+}
+
+/* ─── Inputs ───────────────────────────────────────────────────────────── */
+.p-inputtext,
+.p-textarea,
+.p-password .p-inputtext {
+  background: var(--neu-input-bg) !important;
+  border: none !important;
+  border-radius: 14px !important;
+  box-shadow: var(--neu-shadow-inset) !important;
+  color: #3d3d3d !important;
+  font-family: var(--font-sans) !important;
+  transition: box-shadow 0.2s ease !important;
+  outline: none !important;
+}
+.p-inputtext:focus,
+.p-textarea:focus,
+.p-password .p-inputtext:focus {
+  box-shadow: var(--neu-shadow-active) !important;
+  border: none !important;
+}
+
+/* Validation states */
+.p-invalid .p-inputtext,
+.p-inputtext.p-invalid {
+  box-shadow: var(--neu-shadow-inset), 0 0 0 2px #E86B6B !important;
+}
+
+/* ─── Select / Dropdown ─────────────────────────────────────────────────── */
+.p-select,
+.p-multiselect,
+.p-autocomplete .p-autocomplete-input,
+.p-datepicker-input {
+  background: var(--neu-input-bg) !important;
+  border: none !important;
+  border-radius: 14px !important;
+  box-shadow: var(--neu-shadow-inset) !important;
+  transition: box-shadow 0.2s ease !important;
+}
+.p-select:focus-within,
+.p-multiselect:focus-within,
+.p-autocomplete:focus-within .p-autocomplete-input,
+.p-select-open {
+  box-shadow: var(--neu-shadow-active) !important;
+}
+.p-select-overlay,
+.p-multiselect-overlay,
+.p-autocomplete-overlay,
+.p-datepicker-panel {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: 16px !important;
+  box-shadow: var(--neu-shadow) !important;
+}
+.p-select-option:hover,
+.p-multiselect-option:hover,
+.p-autocomplete-option:hover {
+  background: rgba(126, 203, 161, 0.15) !important;
+  border-radius: 8px !important;
+}
+.p-select-option.p-select-option-selected,
+.p-multiselect-option.p-multiselect-option-selected {
+  background: rgba(126, 203, 161, 0.25) !important;
+  color: #3d3d3d !important;
+}
+
+/* ─── Checkbox ──────────────────────────────────────────────────────────── */
+.p-checkbox .p-checkbox-box {
+  background: var(--neu-input-bg) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  width: 24px !important;
+  height: 24px !important;
+  box-shadow: var(--neu-shadow) !important;
+  transition: box-shadow 0.2s ease !important;
+}
+.p-checkbox.p-checkbox-checked .p-checkbox-box {
+  background: #7ECBA1 !important;
+  box-shadow: var(--neu-shadow-checked) !important;
+}
+.p-checkbox .p-checkbox-box:hover {
+  box-shadow: var(--neu-shadow-active) !important;
+}
+
+/* ─── Radio Button ──────────────────────────────────────────────────────── */
+.p-radiobutton .p-radiobutton-box {
+  background: var(--neu-input-bg) !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 24px !important;
+  height: 24px !important;
+  box-shadow: var(--neu-shadow) !important;
+  transition: box-shadow 0.2s ease !important;
+}
+.p-radiobutton.p-radiobutton-checked .p-radiobutton-box {
+  background: var(--neu-input-bg) !important;
+  box-shadow: var(--neu-shadow-checked) !important;
+}
+.p-radiobutton.p-radiobutton-checked .p-radiobutton-box .p-radiobutton-icon {
+  background: #7ECBA1 !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+/* ─── Toggle Switch ─────────────────────────────────────────────────────── */
+.p-toggleswitch .p-toggleswitch-slider {
+  background: var(--neu-input-bg) !important;
+  border: none !important;
+  box-shadow: var(--neu-shadow-inset) !important;
+  border-radius: 24px !important;
+}
+.p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-slider {
+  background: #7ECBA1 !important;
+  box-shadow: var(--neu-shadow-checked) !important;
+}
+.p-toggleswitch .p-toggleswitch-handle {
+  background: #e4e4e4 !important;
+  box-shadow: var(--neu-shadow) !important;
+}
+
+/* ─── Slider ─────────────────────────────────────────────────────────── */
+.p-slider {
+  background: var(--neu-input-bg) !important;
+  border-radius: 4px !important;
+  box-shadow: var(--neu-shadow-inset) !important;
+  height: 8px !important;
+  border: none !important;
+}
+.p-slider .p-slider-range {
+  background: linear-gradient(90deg, #7ECBA1, #8dc6e8) !important;
+  border-radius: 4px !important;
+}
+.p-slider .p-slider-handle {
+  background: #e4e4e4 !important;
+  border: none !important;
+  border-radius: 50% !important;
+  box-shadow: var(--neu-shadow) !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin-top: -6px !important;
+  transition: box-shadow 0.2s ease !important;
+}
+.p-slider .p-slider-handle:hover,
+.p-slider .p-slider-handle:active {
+  box-shadow: var(--neu-shadow-active) !important;
+}
+
+/* ─── Rating ─────────────────────────────────────────────────────────── */
+.p-rating .p-rating-item .p-rating-icon {
+  color: #dcdcdc !important;
+  font-size: 1.5rem !important;
+  transition: box-shadow 0.15s, color 0.15s !important;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+.p-rating .p-rating-item.p-rating-item-active .p-rating-icon {
+  color: #f5c87a !important;
+  filter: drop-shadow(0 2px 6px rgba(245,200,122,0.4));
+}
+.p-rating .p-rating-item:hover .p-rating-icon {
+  color: #f5c87a !important;
+}
+
+/* ─── Knob ───────────────────────────────────────────────────────────── */
+.p-knob svg {
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.2)) drop-shadow(0 -4px 8px rgba(255,255,255,0.5));
+}
+
+/* ─── Progress Bar ───────────────────────────────────────────────────── */
+.p-progressbar {
+  background: var(--neu-input-bg) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--neu-shadow-inset) !important;
+  border: none !important;
+  height: 10px !important;
+}
+.p-progressbar .p-progressbar-value {
+  background: linear-gradient(90deg, #7ECBA1, #8dc6e8) !important;
+  border-radius: 8px !important;
+}
+
+/* ─── Tag / Badge ────────────────────────────────────────────────────── */
+.p-tag {
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+}
+
+/* ─── Chip / InputChips ──────────────────────────────────────────────── */
+.p-chip {
+  background: var(--neu-input-bg) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--neu-shadow) !important;
+  border: none !important;
+  color: #3d3d3d !important;
+  font-size: 0.8125rem !important;
+}
+.p-inputchips .p-inputchips-input-container {
+  background: var(--neu-input-bg) !important;
+  border: none !important;
+  border-radius: 14px !important;
+  box-shadow: var(--neu-shadow-inset) !important;
+  padding: 0.5rem 1rem !important;
+}
+
+/* ─── Card / Panel ───────────────────────────────────────────────────── */
+.p-card {
+  background: var(--neu-bg) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--neu-shadow) !important;
+  border: none !important;
+  color: #3d3d3d !important;
+}
+.p-card .p-card-title {
+  font-weight: 700 !important;
+  color: #3d3d3d !important;
+}
+.p-panel {
+  background: var(--neu-bg) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--neu-shadow) !important;
+  border: none !important;
+}
+.p-panel .p-panel-header {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 20px 20px 0 0 !important;
+  font-weight: 700 !important;
+}
+.p-panel .p-panel-content {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* ─── Accordion ──────────────────────────────────────────────────────── */
+.p-accordion {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+.p-accordion .p-accordion-panel {
+  margin-bottom: 0.75rem !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  box-shadow: var(--neu-shadow) !important;
+  background: var(--neu-bg) !important;
+  border: none !important;
+}
+.p-accordion .p-accordion-header .p-accordion-header-link {
+  background: transparent !important;
+  border: none !important;
+  font-weight: 600 !important;
+  color: #3d3d3d !important;
+}
+.p-accordion .p-accordion-content {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* ─── Tabs ───────────────────────────────────────────────────────────── */
+.p-tabs .p-tablist {
+  background: var(--neu-input-bg) !important;
+  border-radius: 14px !important;
+  padding: 4px !important;
+  border: none !important;
+  box-shadow: var(--neu-shadow-inset) !important;
+  gap: 4px !important;
+}
+.p-tabs .p-tab {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 10px !important;
+  color: #8a8a8a !important;
+  font-weight: 600 !important;
+  padding: 0.5rem 1.25rem !important;
+  transition: all 0.2s ease !important;
+}
+.p-tabs .p-tab.p-tab-active {
+  background: var(--neu-bg) !important;
+  color: #3d3d3d !important;
+  box-shadow: var(--neu-shadow) !important;
+}
+.p-tabs .p-tabpanels {
+  background: transparent !important;
+  border: none !important;
+  padding: 1rem 0 !important;
+}
+
+/* ─── Message / Toast ────────────────────────────────────────────────── */
+.p-message {
+  border-radius: 14px !important;
+  border: none !important;
+  box-shadow: var(--neu-shadow) !important;
+}
+.p-toast .p-toast-message {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: 16px !important;
+  box-shadow: var(--neu-shadow) !important;
+}
+.p-toast .p-toast-message-success .p-toast-message-icon,
+.p-toast .p-toast-message-success .p-toast-close-icon { color: #7ECBA1 !important; }
+.p-toast .p-toast-message-error .p-toast-message-icon,
+.p-toast .p-toast-message-error .p-toast-close-icon { color: #F5A0A0 !important; }
+.p-toast .p-toast-message-warn .p-toast-message-icon,
+.p-toast .p-toast-message-warn .p-toast-close-icon { color: #f5c87a !important; }
+
+/* ─── DataTable ──────────────────────────────────────────────────────── */
+.p-datatable {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: var(--neu-shadow) !important;
+}
+.p-datatable .p-datatable-header {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  font-weight: 700 !important;
+  padding: 1rem 1.5rem !important;
+}
+.p-datatable .p-datatable-thead > tr > th {
+  background: var(--neu-input-bg) !important;
+  border: none !important;
+  font-weight: 700 !important;
+  color: #3d3d3d !important;
+  padding: 0.875rem 1.5rem !important;
+}
+.p-datatable .p-datatable-tbody > tr {
+  background: var(--neu-bg) !important;
+  transition: background 0.15s ease !important;
+  border: none !important;
+}
+.p-datatable .p-datatable-tbody > tr:hover {
+  background: rgba(126, 203, 161, 0.1) !important;
+}
+.p-datatable .p-datatable-tbody > tr > td {
+  border: none !important;
+  border-bottom: 1px solid rgba(0,0,0,0.04) !important;
+  padding: 0.875rem 1.5rem !important;
+}
+
+/* ─── Dialog ─────────────────────────────────────────────────────────── */
+.p-dialog {
+  background: var(--neu-bg) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--neu-shadow) !important;
+  border: none !important;
+}
+.p-dialog .p-dialog-header {
+  background: transparent !important;
+  border: none !important;
+  font-weight: 700 !important;
+  padding: 1.5rem 1.5rem 0.75rem !important;
+}
+.p-dialog .p-dialog-content {
+  background: transparent !important;
+  border: none !important;
+}
+.p-dialog .p-dialog-footer {
+  background: transparent !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem 1.5rem !important;
+}
+.p-dialog-mask {
+  backdrop-filter: blur(4px) !important;
+  background: rgba(0,0,0,0.1) !important;
+}
+
+/* ─── Divider ────────────────────────────────────────────────────────── */
+.p-divider::before {
+  border-color: #d8d8d8 !important;
+}
+
+/* ─── InputNumber ────────────────────────────────────────────────────── */
+.p-inputnumber .p-inputtext {
+  border-radius: 14px !important;
+}
+.p-inputnumber-button {
+  background: var(--neu-input-bg) !important;
+  border: none !important;
+  box-shadow: var(--neu-shadow) !important;
+  color: #3d3d3d !important;
+}
+.p-inputnumber-button:hover {
+  background: var(--neu-bg) !important;
+}
+
+/* ─── DatePicker ─────────────────────────────────────────────────────── */
+.p-datepicker-panel {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: 16px !important;
+  box-shadow: var(--neu-shadow) !important;
+}
+.p-datepicker .p-datepicker-day-cell.p-datepicker-today .p-datepicker-day {
+  background: rgba(126, 203, 161, 0.2) !important;
+  color: #3d3d3d !important;
+  border-radius: 8px !important;
+}
+.p-datepicker .p-datepicker-day-cell .p-datepicker-day.p-highlight,
+.p-datepicker .p-datepicker-day-cell .p-datepicker-day:hover {
+  background: #7ECBA1 !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+}
+
+/* ─── Password strength bar ──────────────────────────────────────────── */
+.p-password-panel {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: 14px !important;
+  box-shadow: var(--neu-shadow) !important;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--neu-bg); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #c8c8c8; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #b0b0b0; }
+
+/* ─── Utility helpers used in the showcase ───────────────────────────── */
+.neu-card {
+  background: var(--neu-bg);
+  border-radius: 20px;
+  box-shadow: var(--neu-shadow);
+  padding: 2rem;
+}
+
+.section-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a0a0a0;
+  margin-bottom: 1rem;
+}
+
+.gradient-divider {
+  height: 2px;
+  background: linear-gradient(90deg, #7ECBA1 0%, #B8A9E8 50%, #F5A0A0 100%);
+  border-radius: 2px;
+  margin: 0;
+}

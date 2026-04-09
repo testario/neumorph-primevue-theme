@@ -17,6 +17,7 @@ pnpm-debug.log*
 .idea/
 .vscode/
 .claude/
+AGENTS.md
 
 .DS_Store
 Thumbs.db
